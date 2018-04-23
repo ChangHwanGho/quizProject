@@ -134,30 +134,49 @@ $(document).ready(function() {
        {
           document.getElementById("quizIs").innerHTML="예시) 한국IBM의 대표이사 사장님의 이름은?";   
        }
-       else if(quizCode=="클라우드")
-       {
-          document.getElementById("quizIs").innerHTML="Cloud 환경에서 서비스를 개발 할 수 있는 환경과 그 환경을 이용하는 응용프로그램을 개발 할 수있는 API까지 제공하는 형태는 무엇인가요?";   
-         }
-       else if(quizCode=="솔루션")
-       {
-          var str = "Combining industry best practices for Design Thinking, Agile Development, DevOps, and Cloud to build and deliver innoavation solutions?<br>:IBM Bluemix ( ) Method";
-          var result = str.fontsize(3);
-          document.getElementById("quizIs").innerHTML = result;
-         }
-       else if(quizCode=="컴퓨팅")
-       {
-          document.getElementById("quizIs").innerHTML="AWS에서 제공하는 컴퓨팅 서비스는 무엇인가요?";      
-         }
-       else if(quizCode=="인터페이스")
-       {
-          document.getElementById("quizIs").innerHTML="Business Function을 Exposing하는 표준 인터페이스는 무엇인가요?";         
-         }
+     
        else if(quizCode=="광파오븐렌지")
        {
          var str = "<b>\"광파오븐렌지\"</b><br>추첨을 시작해 볼까요?<br><b>\"시작\"</b>을 입력해 주세요.";   
          var result = str.fontsize(4);
          document.getElementById("quizIs").innerHTML=result;
        }
+       else if(quizCode=="서버리스")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="Serverless means that there is no server (true/false)";   
+   	   }
+       else if(quizCode=="서비스")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="Serverless 는 무엇을 서비스로 제공 받는것인가 (infra/platform/function)";   
+   	   }
+       else if(quizCode=="툴체인")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="Devops는 개발에서 운영까지 빠르고 쉽게 서비스를 적용하기위한 tool과 ()이다. 괄호안에 들어갈말은?";   
+   	   }
+       else if(quizCode=="SQS")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="SQS는 simple XXXXX service의 약자이다. XXXXX는?";   
+   	   }
+       else if(quizCode=="코드디플로이")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="Code Deploy는 On-premise서버의 deploy를 지원하지 않는다. (true/false)";   
+   	   }
+       else if(quizCode=="파이프")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="AWS CI/CD toolchain인 AWS Code 서비스 제품군 중에서 소스 체크인부터 프로덕션까지 자동화된 릴리즈 워크플로우를 제공하는 서비스는?";   
+   	   }
+       else if(quizCode=="시계")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="AWS 클라우드 리소스와 AWS 에서 실행되는 애플리케이션을 위해 제공되는 모니터링 서비스는?";   
+   	   }
+       else if(quizCode=="디비")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="AWS에서 제공하는 완전관리형 noSQL 서비스는?";   
+   	   }
+       else if(quizCode=="컴퓨팅")
+   	   {
+    	   document.getElementById("quizIs").innerHTML="서버를 프로비저닝하거나 관리하지 않고도 코드를 실행할 수 있게 해주는 AWS 컴퓨팅 서비스는?";   
+   	   }
        else
        {
          document.getElementById("quizIs").innerHTML="해당 문제코드에 대한 문제가 없습니다.";
@@ -175,7 +194,16 @@ $(document).ready(function() {
      answer=answer.toLowerCase()
      var serialNo=$('#serialNo').val();
 
-     if(quizCode=="대박포차" && answer=="99"||quizCode=="IBM"&&answer=="장화진"||quizCode=="클라우드"&&answer=="paas"||quizCode=="솔루션"&&answer=="garage"||quizCode=="컴퓨팅"&&answer=="ec2"||quizCode=="인터페이스"&&answer=="api"){
+     if(quizCode=="IBM"&&answer=="장화진"
+    		 ||quizCode=="서버리스"&&answer=="false"
+    		 ||quizCode=="서비스"&&answer=="function"
+    		 ||quizCode=="툴체인"&&answer=="process"
+    		 ||quizCode=="SQS"&&answer=="queue"
+    		 ||quizCode=="코드디플로이"&&answer=="false"
+    		 ||quizCode=="파이프"&&answer=="codepipeline"
+    		 ||quizCode=="시계"&&answer=="cloudwatch"
+    		 ||quizCode=="디비"&&answer=="dynamodb"
+    		 ||quizCode=="컴퓨팅"&&answer=="lambda"){
         
         $.ajax({
             type : 'GET',

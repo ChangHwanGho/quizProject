@@ -74,8 +74,7 @@ public class QuizServiceImpl implements QuizService{
       
       ScanResult result = client.scan(scanRequest);
       
-      long forKstTime=1000*60*60*9;
-      
+      //set KTC
       Calendar cal = Calendar.getInstance();
       SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
       cal.add(Calendar.HOUR, 9);
@@ -124,7 +123,17 @@ public class QuizServiceImpl implements QuizService{
          // TODO: handle exception
       }
 
-      if(quizCode.equals("IBM")&&!answer.equals("장화진")||quizCode.equals("클라우드")&&!answer.equals("paas")||quizCode.equals("솔루션")&&!answer.equals("garage")||quizCode.equals("컴퓨팅")&&!answer.equals("ec2")||quizCode.equals("인터페이스")&&!answer.equals("api"))
+      if(quizCode.equals("IBM")&&!answer.equals("장화진")
+    		  ||quizCode.equals("서버리스")&&!answer.equals("false")
+    		  ||quizCode.equals("서비스")&&!answer.equals("function")
+    		  ||quizCode.equals("툴체인")&&!answer.equals("process")
+    		  ||quizCode.equals("SQS")&&!answer.equals("queue")
+    		  ||quizCode.equals("코드디플로이")&&!answer.equals("false")
+    		  ||quizCode.equals("파이프")&&!answer.equals("codepipeline")
+    		  ||quizCode.equals("시계")&&!answer.equals("cloudwatch")
+    		  ||quizCode.equals("디비")&&!answer.equals("dynamodb")
+    		  ||quizCode.equals("컴퓨팅")&&!answer.equals("lambda")
+    	)
       {
          return "wrong";
       }
