@@ -1,12 +1,13 @@
 package com.ibm.quiz.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.stereotype.Service;
 
@@ -25,21 +26,49 @@ import com.ibm.quiz.service.QuizService;
 @Service
 public class QuizServiceImpl implements QuizService{
    
+	//dynamoDB access Key.
    static BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAI2GR6IU4CBWP7Z7Q", "fYdcSCBbLeIEUYvUHxv5qeVlgWLcFE7wbQCPc5gG");
    
+   //set client.
    static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
          .withRegion("ap-northeast-2")
          .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
          .build();
    
+   //DB connection.
    static DynamoDB dynamoDB = new DynamoDB(client);
    
+   //set table name.
    String table_name = "aws_quiz_show";
    Table workTable = dynamoDB.getTable(table_name);
    
+   //get data by scan.
+   public List<Map<String, String>> getDynamo() {
+	   
+	   List<Map<String, String>> dynamoResult = new ArrayList<Map<String, String>>();
+		
+	   ScanRequest scanRequest= new ScanRequest().withTableName(table_name);
+	   
+	   ScanResult result = client.scan(scanRequest);
+	   
+
+	   
+	for (Map<String, AttributeValue> item : result.getItems()) {
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("serialNo", item.get("serialNo").getS());
+		map.put("quizCode", item.get("quizCode").getS());
+		map.put("transactionTime",item.get("transactionTime").getS());
+		dynamoResult.add(map);
+	}
+ 
+	   return dynamoResult;
+
+   }
+   
    
 
-   
+   //update date.
    public String upDynamo(HttpServletRequest request) {
       ScanRequest scanRequest= new ScanRequest().withTableName(table_name);
       
@@ -106,5 +135,10 @@ public class QuizServiceImpl implements QuizService{
    
    
    
+   public String congratulation()
+   {
+	   
+	   return null;
+   }
    
 }

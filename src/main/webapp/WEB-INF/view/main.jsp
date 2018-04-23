@@ -108,7 +108,7 @@ $(document).ready(function() {
      quizCode=$('#quizCode').val();
      var serialNo=$('#serialNo').val();
      
-     if(quizCode != null && quizCode != "" && serialNo != null && serialNo != ""){
+     if(quizCode != null && quizCode != "" && serialNo.length==6){
        if (animating) return;
        animating = true;
        var that = this;
@@ -158,8 +158,9 @@ $(document).ready(function() {
          }
 
      }else{
-        alert("사원번호 또는 문제코드를 입력해주세요.");
+    	 alert("사원번호 혹은 문제코드를 확인하세요.");
      }
+  
   });
   
   $(document).on("click", ".login1__submit", function(e) {
@@ -188,7 +189,12 @@ $(document).ready(function() {
                }
             }
          });
-     }else{
+     }
+	else if(quizCode=="다이나모" && answer=="조회"){
+    	 
+    	 location.href="/dynamo"
+     }
+     else{
         $.ajax({
             type : 'GET',
             url : '/result',

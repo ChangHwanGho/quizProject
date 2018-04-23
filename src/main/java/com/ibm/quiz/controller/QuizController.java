@@ -35,9 +35,23 @@ public class QuizController {
 		ModelAndView mav = new ModelAndView("notFirst");
 		return mav;
 	}
-
-
 	
+	@GetMapping(value="/congratulation")
+	public ModelAndView showCongratulationPage() {
+		ModelAndView mav = new ModelAndView("congratulation");
+		
+		return mav;
+	}
+
+	@GetMapping(value="/dynamo")
+	public ModelAndView showDynamoPage() {
+		ModelAndView mav = new ModelAndView("dynamo");
+
+		mav.addObject("quizList", quizService.getDynamo());
+		
+		return mav;
+	}
+
 	@GetMapping(value="/result")
 	@ResponseBody
 	public String showQuestionPage(HttpServletResponse response, HttpServletRequest request) {
@@ -50,5 +64,7 @@ public class QuizController {
 		}
 		return result;
 	}
+	
+
 	
 }
