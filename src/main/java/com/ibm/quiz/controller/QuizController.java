@@ -1,5 +1,9 @@
 package com.ibm.quiz.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,10 +42,17 @@ public class QuizController {
 	
 	@GetMapping(value="/congratulation")
 	public ModelAndView showCongratulationPage() {
-		ModelAndView mav = new ModelAndView("congratulation");
+		ModelAndView mav = new ModelAndView("congratulation");	
+		List<Map<String, String>> list = quizService.getDynamo();
+		String winner = list.get(randomRange(0, list.size())).get("serialNo");
 		
+		mav.addObject("winner", winner);
 		return mav;
 	}
+	
+  public int randomRange(int n1, int n2) {
+    return (int) (Math.random() * (n2 - n1 + 1)) + n1;
+  }
 
 	@GetMapping(value="/dynamo")
 	public ModelAndView showDynamoPage() {

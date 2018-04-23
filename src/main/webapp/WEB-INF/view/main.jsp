@@ -152,11 +152,16 @@ $(document).ready(function() {
        {
           document.getElementById("quizIs").innerHTML="Business Function을 Exposing하는 표준 인터페이스는 무엇인가요?";         
          }
+       else if(quizCode=="광파오븐렌지")
+       {
+         var str = "<b>\"광파오븐렌지\"</b><br>추첨을 시작해 볼까요?<br><b>\"시작\"</b>을 입력해 주세요.";   
+         var result = str.fontsize(4);
+         document.getElementById("quizIs").innerHTML=result;
+       }
        else
        {
-          document.getElementById("quizIs").innerHTML="해당 문제코드에 대한 문제가 없습니다.";   
-         }
-
+         document.getElementById("quizIs").innerHTML="해당 문제코드에 대한 문제가 없습니다.";
+       }
      }else{
     	 alert("사원번호 혹은 문제코드를 확인하세요.");
      }
@@ -190,9 +195,13 @@ $(document).ready(function() {
             }
          });
      }
-	else if(quizCode=="다이나모" && answer=="조회"){
+		 else if(quizCode=="다이나모" && answer=="조회"){
     	 
     	 location.href="/dynamo"
+     }
+		 else if(quizCode=="광파오븐렌지" && answer=="시작"){
+    	 
+    	 location.href="/congratulation"
      }
      else{
         $.ajax({
